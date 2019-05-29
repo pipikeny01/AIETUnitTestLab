@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using UnitTestLab1.Service;
 
 namespace UnitTestLab1
 {
@@ -13,9 +14,8 @@ namespace UnitTestLab1
             //var service = new Service();
             //var result = service.ValidateMember("admin", "admin123");
 
-            var product = new ProductService();
-            var result = product.CulcFruitsPrice();
-            Console.WriteLine(result);
+            var teacherService   = new TeacherService();
+            var result = teacherService.CheckTeacherQualifications();
             Console.ReadKey();
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UnitTestLab1
 {
-     public class Service
+     public class MemberService
     {
         public string ValidateMember(string account, string password)
         {
