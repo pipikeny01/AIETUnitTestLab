@@ -11,7 +11,7 @@ namespace UnitTestLab1
         }
 
         /// <summary>
-        /// 蘋果買2顆 , 香蕉一串 ,芭樂3顆 共多少錢
+        /// 蘋果買2顆 , 香蕉一串 ,芭樂3顆 共135
         /// </summary>
         /// <returns></returns>
         public decimal CulcFruitsPrice()

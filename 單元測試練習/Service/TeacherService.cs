@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitTestLab1.ODT;
+using UnitTestLab1.Repository;
 
 namespace UnitTestLab1.Service
 {
     public class TeacherService
     {
+        ITeacherRepository _teacherRepos;
         public class QualificationDefine
         {
             public static int Age => 65;
@@ -16,22 +18,20 @@ namespace UnitTestLab1.Service
             public static int MaxHourLimit => 80;
         }
 
+
+        public TeacherService(ITeacherRepository teacherRepository)
+        {
+            _teacherRepos = teacherRepository;
+        }
+
         /// <summary>
         /// 條件年紀不可大於65 , 內聘不限時數 , 外聘60提示訊息 80不可排課
         /// </summary>
         /// <returns></returns>
         public List<Teacher> CheckTeacherQualifications()
-        {            
-            //假裝是資料庫抓資料
-            var teachers = new List<Teacher>
-            {
-                new Teacher { Name="T1", Age=66,Hour=61 ,Type=TeacherType.內聘 ,CheckResult=QualificationsResult.NotYetChecked },
-                new Teacher { Name="T2",Age=46,Hour=85 ,Type=TeacherType.內聘 ,CheckResult=QualificationsResult.NotYetChecked},
-                new Teacher { Name="T3",Age=34,Hour=61 ,Type=TeacherType.外聘 ,CheckResult=QualificationsResult.NotYetChecked},
-                new Teacher { Name="T4",Age=41,Hour=50 ,Type=TeacherType.外聘 ,CheckResult=QualificationsResult.NotYetChecked},
-                new Teacher { Name="T5",Age=31,Hour=81 ,Type=TeacherType.外聘 ,CheckResult=QualificationsResult.NotYetChecked}
-           };
-
+        {
+            var teachers = _teacherRepos.SelectTeachers();
+            
             foreach (var teacher in teachers)
             {
                 if (teacher.Age > QualificationDefine.Age)
