@@ -19,6 +19,7 @@ namespace UnitTestLab1.Service
         /// </summary>
         public void SyncBookOrders()
         {
+            var www;
             var orders = this.GetOrders();
 
             // only get orders of book
