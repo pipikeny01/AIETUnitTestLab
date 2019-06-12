@@ -10,6 +10,10 @@ using UnitTestLab1.ODT;
 
 namespace UnitTestLab1.Service
 {
+    //假物件分兩種
+    //stub:虛設常式
+    //mock:模擬物件
+
     public class OrderService
     {
         private string _filePath = @"C:\temp\joey.csv";
@@ -19,24 +23,24 @@ namespace UnitTestLab1.Service
         /// </summary>
         public void SyncBookOrders()
         {
-            var www;
             var orders = this.GetOrders();
 
             // only get orders of book
             var ordersOfBook = orders.Where(x => x.Type == "Book");
 
-            var bookDao = new BookDao();
+            var bookDao = GetBookDao();
             foreach (var order in ordersOfBook)
             {
                 bookDao.Insert(order);
             }
         }
 
+
         /// <summary>
         /// 從csv取得訂單資料
         /// </summary>
         /// <returns></returns>
-        private List<Order> GetOrders()
+        protected virtual List<Order> GetOrders()
         {
             // parse csv file to get orders
             var result = new List<Order>();
@@ -65,6 +69,11 @@ namespace UnitTestLab1.Service
             return result;
         }
 
+        protected virtual IBookDao GetBookDao()
+        {
+            return new BookDao();
+        }
+
         private Order Mapping(string[] line)
         {
             var result = new Order
@@ -79,9 +88,9 @@ namespace UnitTestLab1.Service
         }
     }
 
-    public class BookDao
+    public class BookDao : IBookDao
     {
-        internal void Insert(Order order)
+        public void Insert(Order order)
         {
             var myContent = JsonConvert.SerializeObject(order);
             var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
