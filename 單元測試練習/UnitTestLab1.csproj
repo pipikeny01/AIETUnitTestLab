@@ -66,7 +66,9 @@
     <Compile Include="ODT\Order.cs" />
     <Compile Include="Repository\ITeacherRepository.cs" />
     <Compile Include="Repository\TeacherRepository.cs" />
+    <Compile Include="Service\IBookDao.cs" />
     <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\StubOrderService.cs" />
     <Compile Include="Service\TeacherService2.cs" />
     <Compile Include="Service\TeacherService_v1.cs" />
     <Compile Include="Service\ProductService.cs" />

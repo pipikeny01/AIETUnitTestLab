@@ -8,9 +8,9 @@ namespace UnitTestLab1.ODT
 {
     public class Order
     {
-        public string Type { get; internal set; }
-        public string ProductName { get; internal set; }
-        public int Price { get; internal set; }
-        public string CustomerName { get; internal set; }
+        public string Type { get;   set; }
+        public string ProductName { get;  set; }
+        public int Price { get;  set; }
+        public string CustomerName { get;  set; }
     }
 }
